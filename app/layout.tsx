@@ -14,10 +14,10 @@ const ibmPlexSerif = IBM_Plex_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Wealthix",
+  title: "WealthiX",
   description: "Your Wealth, Our Commitment",
   icons: {
-    icon: "/icons/logo.svg",
+    icon: "/icons/logo.png",
   },
 };
 
