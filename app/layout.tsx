@@ -29,7 +29,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${ibmPlexSerif.variable} antialiased`}>
+        className={`${inter.variable} ${ibmPlexSerif.variable} antialiased`}
+        suppressHydrationWarning={true}>
         {children}
       </body>
     </html>
