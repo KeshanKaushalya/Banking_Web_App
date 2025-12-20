@@ -1,4 +1,5 @@
 import HeaderBox from '@/components/HeaderBox'
+import TotalBalanceBox from '@/components/TotalBalanceBox';
 import React from 'react'
 
 const Home = () => {
@@ -12,7 +13,13 @@ const Home = () => {
               type="greeting"
               title="Welcome"
               user={loggedIn?.firstName || 'Guest'}
-              subtext="Access and manage your account and transaction efficiently."
+              subtext=" Wealthix transforms everyday transactions into intelligent money management experiences ."
+            />
+
+            <TotalBalanceBox 
+              accounts={[]}
+              totalBanks={1}
+              totalCurrentBalance={1250.35}
             />
           </header>
       </div>
