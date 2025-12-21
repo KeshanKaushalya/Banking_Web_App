@@ -200,6 +200,7 @@ export const getTransactionStatus = (date: Date) => {
   firstName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
   lastName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
   address1: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(50, "String must contain at most 50 characters"),
+  city: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(15, "String must contain at most 15 characters"),
   state: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(2, "String must contain at least 2 characters").max(10, "String must contain at most 10 characters"),
   postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(4, "String must contain at least 4 characters").max(6, "String must contain at most 6 characters"),
   dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(5, "Invalid"),
