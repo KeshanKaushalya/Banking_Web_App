@@ -195,7 +195,16 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? "Processing" : "Success";
 };
 
- export const authFormSchema = z.object({
+ export const authFormSchema = (type: string) => z.object({
+  //sign up
+  firstName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
+  lastName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
+  address1: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(50, "String must contain at most 50 characters"),
+  state: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(2, "String must contain at least 2 characters").max(10, "String must contain at most 10 characters"),
+  postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(4, "String must contain at least 4 characters").max(6, "String must contain at most 6 characters"),
+  dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(5, "Invalid"),
+  ssn: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(11, "Invalid"),
+  // sign in & sign up
   email: z.string().min(1, "Email is required").email("Invalid email address"),
-  password: z.string().min(1, "Password is required").min(8, "Password must be at least 8 characters")
+  password: z.string().min(1, "Password is required").min(8, "Password must be at least 8 characters"),
 });
