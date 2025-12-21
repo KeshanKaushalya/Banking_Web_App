@@ -20,4 +20,3 @@ function Input({ className, type, value, ...props }: React.ComponentProps<"input
 }
 
 export { Input }
-
