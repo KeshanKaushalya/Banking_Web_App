@@ -14,10 +14,10 @@ const RightSidebar = ({ user, transactions, banks}: RightSidebarProps) => {
                 </div>
              <div className='profile-details'>
                <h1 className='profile-name'>
-                {user.name}
+                {user?.name || 'User'}
                </h1>
                <p className='profile-email'>
-                {user.email}
+                {user?.email || 'No email'}
                </p>
              </div>
             </div>
