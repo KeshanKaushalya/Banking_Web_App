@@ -196,16 +196,16 @@ export const getTransactionStatus = (date: Date) => {
 };
 
  export const authFormSchema = (type: string) => z.object({
-  //sign up
-  firstName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
-  lastName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
-  address1: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(50, "String must contain at most 50 characters"),
-  city: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(15, "String must contain at most 15 characters"),
-  state: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(2, "String must contain at least 2 characters").max(10, "String must contain at most 10 characters"),
-  postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(4, "String must contain at least 4 characters").max(6, "String must contain at most 6 characters"),
-  dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(5, "Invalid"),
-  ssn: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(11, "Invalid"),
-  // sign in & sign up
-  email: z.string().min(1, "Email is required").email("Invalid email address"),
-  password: z.string().min(1, "Password is required").min(8, "Password must be at least 8 characters"),
+ //sign up
+ firstName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
+ lastName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
+ address1: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(50, "String must contain at most 50 characters"),
+ city: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(15, "String must contain at most 15 characters"),
+ state: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").regex(/^[A-Z]{2}$/, "State must be a 2-letter abbreviation"),
+ postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(4, "String must contain at least 4 characters").max(6, "String must contain at most 6 characters"),
+ dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be in YYYY-MM-DD format"),
+ ssn: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").regex(/^\d{9}$/, "NIC must be 9 digits"),
+ // sign in & sign up
+ email: z.string().min(1, "Email is required").email("Invalid email address"),
+ password: z.string().min(1, "Password is required").min(8, "Password must be at least 8 characters"),
 });
