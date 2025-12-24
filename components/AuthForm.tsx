@@ -48,7 +48,19 @@ const AuthForm = ({ type }: { type: string }) => {
         //Sign up with Appwrite & create plain link token
 
         if(type === 'sign-up'){
-          const newUser = await signUp(data);
+        const userData = {
+          firstName: data.firstName!,
+          lastName: data.lastName!,
+          address1: data.address1!,
+          city: data.city!,
+          state: data.state!,
+          postalCode: data.postalCode!,
+          dateOfBirth: data.dateOfBirth!,
+          ssn: data.ssn!,
+          email: data.email,
+          password: data.password,
+        }
+          const newUser = await signUp(userData);
 
           setUser(newUser);
         }
@@ -94,11 +106,11 @@ const AuthForm = ({ type }: { type: string }) => {
           </h1>
         </div>
       </header>
-      {/* {user ? ( */}
+      {user ? (
         <div className="flex flex-col gap-4">
           <PlaidLink user={user} variant="primary" />
           </div>
-      {/* ) : ( */}
+      ) : (
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -115,8 +127,8 @@ const AuthForm = ({ type }: { type: string }) => {
                 <CustomInput control={form.control} name="postalCode" label="Postal Code" placeholder="ex: 11100" />
                 </div>
                 <div className="flex gap-4">
-                <CustomInput control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="yyyy-mm-dd" />
-                <CustomInput control={form.control} name="ssn" label="NIC" placeholder="ex: 123412341234" />
+                <CustomInput control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="YYYY-MM-DD" />
+                <CustomInput control={form.control} name="ssn" label="NIC" placeholder="ex: 123456789" />
                 </div>
                 </>
             )}
@@ -151,7 +163,7 @@ const AuthForm = ({ type }: { type: string }) => {
             </Link>
           </footer>
         </>
-      {/* )} */}
+      )}
     </section>
   );
 };
