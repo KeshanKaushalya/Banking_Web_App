@@ -2,6 +2,13 @@
 
 import { Client } from "dwolla-v2";
 
+// export interface CreateFundingSourceOptions {
+//   customerId:string;
+//   fundingSourceName: string;
+//   plaidToken: string;
+//   _links: object;
+// }
+
 const getEnvironment = (): "production" | "sandbox" => {
   const environment = process.env.DWOLLA_ENV as string;
 
