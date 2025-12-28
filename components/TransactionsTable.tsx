@@ -7,8 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { formatAmount, getTransactionStatus } from "@/lib/utils";
 
-const TransactionsTable = () => {
+const TransactionsTable = ({ transactions }: TransactionTableProps) => {
   return (
     <Table>
       <TableCaption className="text-indigo-500">Wealthix transforms everyday transactions into intelligent money management experiences.</TableCaption>
@@ -23,12 +24,25 @@ const TransactionsTable = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">INV001</TableCell>
-          <TableCell>Paid</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell className="text-right">$250.00</TableCell>
-        </TableRow>
+        {transactions.map((t: Transaction) => {
+            const status = getTransactionStatus(new Date(t.date))
+            const amount = formatAmount(t.amount)
+
+            const isDebit = t.type === 'debit';
+            const isCredit = t.type === 'credit'; 
+
+            return(
+                <TableRow key={t.id}>
+                   <TableCell>
+                    <div>
+                        <h1>
+                            {t.name}
+                        </h1>
+                    </div>
+                   </TableCell>
+                </TableRow>
+            )
+        })}
       </TableBody>
     </Table>
   );
