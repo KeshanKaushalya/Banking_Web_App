@@ -28,7 +28,7 @@ Wealthix transforms everyday transactions into intelligent money management expe
 
 ## Live Demo 🎬
 
-Experience Wealthix in action: [Live Demo](https://wealthix-demo.vercel.app) (Coming Soon - 2025 Launch)
+Experience Wealthix in action:[(https://wealthix-demo.vercel.app)](https://wealthixbanking-web-app.vercel.app/) (🚀 - 2026 Launch)
 
 ## How It Works ⚙️
 
