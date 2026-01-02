@@ -2,6 +2,15 @@
 
 A cutting-edge banking web application that revolutionizes personal finance management through intelligent transaction insights and seamless multi-bank connectivity. Built for the future of digital banking in 2025.
 
+<div align="center">
+  <br />
+    <a href="https://youtu.be/PuOVqP_cjkE?feature=shared" target="_blank">
+      <img src="https://github.com/adrianhajdin/banking/assets/151519281/3c03519c-7ebd-4539-b598-49e63d1770b4" alt="Project Banner">
+    </a>
+  <br />
+  
+  <div>
+
 ## Overview 🌟
 
 Wealthix transforms everyday transactions into intelligent money management experiences. Our AI-powered platform provides real-time financial insights, secure multi-bank account aggregation, and quantum-secure payment transfers. Experience the next generation of personal banking with holographic dashboards and predictive financial analytics.
