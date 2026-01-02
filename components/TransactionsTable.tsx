@@ -17,10 +17,10 @@ import {
 const TransactionsTable = ({ transactions }: TransactionTableProps) => {
   return (
     <Table>
-      {/* <TableCaption className="text-indigo-500">
+      <TableCaption className="text-indigo-500">
         Wealthix transforms everyday transactions into intelligent money
         management experiences.
-      </TableCaption> */}
+      </TableCaption>
       <TableHeader className="bg-[#f9fafb]">
         <TableRow>
           <TableHead className="px-2">Transaction</TableHead>
@@ -69,7 +69,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                {t.paymentChannel}
               </TableCell>
 
-              <TableCell className="pl-2 pr-10 max-md:hidden">
+              <TableCell className="pl-2 pr-10 max-md:hidden">Transfer
                {t.category} 
               </TableCell>
             </TableRow>
