@@ -7,12 +7,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatAmount, getTransactionStatus } from "@/lib/utils";
+import {
+  formatAmount,
+  formatDateTime,
+  getTransactionStatus,
+  removeSpecialCharacters,
+} from "@/lib/utils";
 
 const TransactionsTable = ({ transactions }: TransactionTableProps) => {
   return (
     <Table>
-      <TableCaption className="text-indigo-500">Wealthix transforms everyday transactions into intelligent money management experiences.</TableCaption>
+      {/* <TableCaption className="text-indigo-500">
+        Wealthix transforms everyday transactions into intelligent money
+        management experiences.
+      </TableCaption> */}
       <TableHeader className="bg-[#f9fafb]">
         <TableRow>
           <TableHead className="px-2">Transaction</TableHead>
@@ -25,23 +33,47 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
       </TableHeader>
       <TableBody>
         {transactions.map((t: Transaction) => {
-            const status = getTransactionStatus(new Date(t.date))
-            const amount = formatAmount(t.amount)
+          const status = getTransactionStatus(new Date(t.date));
+          const amount = formatAmount(t.amount);
 
-            const isDebit = t.type === 'debit';
-            const isCredit = t.type === 'credit'; 
+          const isDebit = t.type === "debit";
+          const isCredit = t.type === "credit";
 
-            return(
-                <TableRow key={t.id}>
-                   <TableCell>
-                    <div>
-                        <h1>
-                            {t.name}
-                        </h1>
-                    </div>
-                   </TableCell>
-                </TableRow>
-            )
+          return (
+            <TableRow key={t.id}>
+              <TableCell>
+                <div>
+                  <h1>{removeSpecialCharacters(t.name)}</h1>
+                </div>
+              </TableCell>
+
+              <TableCell
+                className={`pl-2 pr-10 font-semibold ${
+                  isDebit || amount[0] === "-"
+                    ? "text-[#f04438]"
+                    : "text-[#039855]"
+                }`}
+              >
+                {isDebit ? `-${amount}` : isCredit ? amount : amount}
+              </TableCell>
+
+              <TableCell className="pl-2 pr-10">
+                {status}  
+              </TableCell>
+
+              <TableCell className="min-w-32 pl-2 pr-10">
+                {formatDateTime(new Date(t.date)).dateTime}
+              </TableCell>
+
+              <TableCell className="pl-2 pr-10 capitalize min-w-24">
+               {t.paymentChannel}
+              </TableCell>
+
+              <TableCell className="pl-2 pr-10 max-md:hidden">
+               {t.category} 
+              </TableCell>
+            </TableRow>
+          );
         })}
       </TableBody>
     </Table>

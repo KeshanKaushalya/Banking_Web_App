@@ -5,13 +5,20 @@ import TotalBalanceBox from '@/components/TotalBalanceBox';
 import { getAccount, getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 import React from 'react'
+import { redirect } from 'next/navigation';
 
-const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+const Home = async ({ searchParams }: SearchParamProps) => {
+  const { id, page } = await searchParams;
   const currentPage = Number(page as string) || 1;
   const loggedIn = await getLoggedInUser();
-  const accounts = await getAccounts({ 
-    userId: loggedIn.$id 
-  })
+
+  if (!loggedIn) {
+    redirect('/sign-in');
+  }
+
+  const accounts = await getAccounts({
+    userId: loggedIn.$id
+  });
 
   if(!accounts) return;
   
@@ -40,11 +47,11 @@ const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
           </header>
        
        <RecentTransactions 
-         accounts={accountsData}
-         transactions={account?.transactions}
-         appwriteItemId={appwriteItemId}
-         page={currentPage}
-       />
+          accounts={accountsData}
+          transactions={account?.transactions}
+          appwriteItemId={appwriteItemId}
+          page={currentPage}
+        />
       </div>
 
      <RightSidebar
