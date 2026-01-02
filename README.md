@@ -9,7 +9,7 @@ A cutting-edge banking web application that revolutionizes personal finance mana
     </a>
   <br />
   
-  <div>
+  </div>
 
 ## Overview 🌟
 
