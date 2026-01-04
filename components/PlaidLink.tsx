@@ -4,6 +4,7 @@ import { PlaidLinkOnSuccess, PlaidLinkOptions, usePlaidLink } from 'react-plaid-
 import { StyledString } from 'next/dist/build/swc/types';
 import { useRouter } from 'next/navigation';
 import { createLinkToken, exchangePublicToken } from '@/lib/actions/user.actions';
+import Image from 'next/image';
 
 const PlaidLink = ({ user, variant}: PlaidLinkProps) => {
 
@@ -43,33 +44,48 @@ const PlaidLink = ({ user, variant}: PlaidLinkProps) => {
         <Button
           onClick={() => open()}
           disabled={!ready}
-          className="plaidlink-primary"
+          className="plaidlink-primary
+                hover:cursor-pointer
+                transition-transform duration-200 ease-out
+                hover:scale-[1.08]
+                active:scale-[0.98]"
         >
           Connect bank
         </Button>
       ): variant === 'ghost' ? (
-        <Button className="plaidlink-ghost">
-          {/* <Image 
+        <Button onClick={() => open()}
+        variant="ghost"
+        className="plaidlink-ghost
+                hover:cursor-pointer
+                transition-transform duration-200 ease-out
+                hover:scale-[1.08]
+                active:scale-[0.98]">
+          <Image 
             src="/icons/connect-bank.svg"
             alt="connect bank"
             width={24}
             height={24}
-          /> */}
-          {/* <p className='hiddenl text-[16px] font-semibold text-black-2 xl:block'> */}
+          />
+          <p className='hidden text-[16px] font-semibold text-black-2 xl:block'>
             Connect bank
-          {/* </p> */}
+          </p>
         </Button>
       ): (
-        <Button className="plaidlink-default">
-          {/* <Image 
+        <Button onClick={() => open()}
+        className="plaidlink-default
+                hover:cursor-pointer
+                transition-transform duration-200 ease-out
+                hover:scale-[1.08]
+                active:scale-[0.98]">
+          <Image 
             src="/icons/connect-bank.svg"
             alt="connect bank"
             width={24}
             height={24}
-          /> */}
-          {/* <p className='text-[16px] font-semibold text-black-2'> */}
+          />
+          <p className='text-[16px] font-semibold text-black-2'>
             Connect bank
-          {/* </p> */}
+          </p>
         </Button>
       )}
     </>
