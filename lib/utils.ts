@@ -1,6 +1,5 @@
 /* eslint-disable no-prototype-builtins */
 import { type ClassValue, clsx } from "clsx";
-import qs from "query-string";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
 
@@ -89,17 +88,9 @@ interface UrlQueryParams {
 }
 
 export function formUrlQuery({ params, key, value }: UrlQueryParams) {
-  const currentUrl = qs.parse(params);
-
-  currentUrl[key] = value;
-
-  return qs.stringifyUrl(
-    {
-      url: window.location.pathname,
-      query: currentUrl,
-    },
-    { skipNull: true }
-  );
+  const url = new URL(window.location.href);
+  url.searchParams.set(key, value);
+  return url.toString();
 }
 
 export function getAccountTypeColors(type: AccountTypes) {
