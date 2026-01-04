@@ -49,6 +49,8 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
       </TableHeader>
       <TableBody>
         {transactions.map((t: Transaction) => {
+          // console.log("FULL TRANSACTION:", t);
+          // console.log("t.category:", t.category);
           const status = getTransactionStatus(new Date(t.date));
           const amount = formatAmount(t.amount);
 
@@ -78,7 +80,7 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
               </TableCell>
 
               <TableCell
-                className={`pl-2 pr-10 font-semibold ${
+                className={`pl-2 pr-5 font-semibold ${
                   isDebit || amount[0] === "-"
                     ? "text-[#f04438]"
                     : "text-[#039855]"
@@ -87,9 +89,11 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                 {isDebit ? `-${amount}` : isCredit ? amount : amount}
               </TableCell>
 
-              <TableCell className="pl-2 pr-10">{status}</TableCell>
+              <TableCell className="pl-2 pr-5">
+               <CategoryBadge category={status}/> 
+              </TableCell>
 
-              <TableCell className="min-w-32 pl-2 pr-10">
+              <TableCell className="min-w-32 pl-2 pr-5">
                 {formatDateTime(new Date(t.date)).dateTime}
               </TableCell>
 
@@ -97,8 +101,8 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                 {t.paymentChannel}
               </TableCell>
 
-              <TableCell className="pl-2 pr-10 max-md:hidden">
-                {t.category}
+              <TableCell className="pl-2 pr-5 max-md:hidden">
+                <CategoryBadge category={t.category || "Other"} />
               </TableCell>
             </TableRow>
           );
