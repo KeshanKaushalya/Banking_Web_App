@@ -5,7 +5,11 @@ import React from 'react'
 
 const BankCard = ({ account, userName, showBalance = true}: CreditCardProps) => {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col 
+                hover:cursor-pointer
+                transition-transform duration-200 ease-out
+                hover:scale-[1.08]
+                active:scale-[0.98];'>
       <Link href="/" className='bank-card'>
       <div className='bank-card_content'>
         <div>
