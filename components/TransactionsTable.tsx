@@ -62,7 +62,12 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
                 isDebit || amount[0] === "-" 
                 ? "bg-[#fff2f2]" 
                 : "bg-[#F6FEF9]"
-              } hover:bg-[#f4f2ff] hover:cursor-pointer !border-b-1`}
+              }  
+                hover:cursor-pointer
+                !border-b
+                transition-transform duration-200 ease-out
+                hover:scale-[1.02]
+                active:scale-[0.98]`}
             >
               <TableCell className="max-w-[250px] pl-2 pr-5">
                 <div className="flex items-center gap-3">
