@@ -250,7 +250,10 @@
   }
 
   .mobilenav-sheet_close {
-    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
+    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60 hover:cursor-pointer
+                transition-transform duration-200 ease-out
+                hover:scale-[1.08]
+                active:scale-[0.98];
   }
 
   /* PlaidLink */
@@ -366,7 +369,11 @@
   }
 
   .sidebar-link {
-    @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start;
+    @apply flex gap-3 items-center py-1 md:p-3 2xl:p-4 rounded-lg justify-center xl:justify-start 
+                hover:cursor-pointer
+                transition-transform duration-200 ease-out
+                hover:scale-[1.08]
+                active:scale-[0.98];
   }
 
   .sidebar-label {
