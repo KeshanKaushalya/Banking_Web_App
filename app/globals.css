@@ -250,7 +250,8 @@
   }
 
   .mobilenav-sheet_close {
-    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60 hover:cursor-pointer
+    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60 
+                hover:cursor-pointer
                 transition-transform duration-200 ease-out
                 hover:scale-[1.08]
                 active:scale-[0.98];
