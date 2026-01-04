@@ -60,9 +60,9 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
               key={t.id}
               className={`${
                 isDebit || amount[0] === "-" 
-                ? "bg-[#FFFBFA]" 
+                ? "bg-[#fff2f2]" 
                 : "bg-[#F6FEF9]"
-              } hover:bg-transparent !border-b-0`}
+              } hover:bg-[#f4f2ff] hover:cursor-pointer !border-b-1`}
             >
               <TableCell className="max-w-[250px] pl-2 pr-5">
                 <div className="flex items-center gap-3">
