@@ -7,8 +7,12 @@ const TransactionHistory = () => {
       <div className='transactions-header'>
         <HeaderBox 
           title='Transaction History'
-          subtext='View your past transactions and manage your account activity.'
+          subtext='View your past Wealthix transactions.'
         />
+      </div>
+
+      <div className='space-y-6'>
+        <div className='transactions-account'></div>
       </div>
     </div>
   )
