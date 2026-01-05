@@ -2,6 +2,7 @@ import { formatAmount } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Copy from './Copy'
 
 const BankCard = ({ account, userName, showBalance = true}: CreditCardProps) => {
   return (
@@ -10,8 +11,10 @@ const BankCard = ({ account, userName, showBalance = true}: CreditCardProps) => 
                 transition-transform duration-200 ease-out
                 hover:scale-[1.08]
                 active:scale-[0.98];'>
-      <Link href="/" className='bank-card'>
-      <div className='bank-card_content'>
+      <Link href={`/transaction-history/?id=${account.appwriteItemId}`} className='bank-card '>
+      <div className='bank-card_content                
+                shadow-md shadow-black/30
+                hover:shadow-lg hover:shadow-black/10'>
         <div>
         <h1 className='text-16 font-semibold text-white'>
           {userName}
@@ -30,7 +33,7 @@ const BankCard = ({ account, userName, showBalance = true}: CreditCardProps) => 
             </h2>
           </div>
           <p className='text-14 font-semibold tracking-[1.1px] text-white'>
-            ●●●● ●●●● ●●●● <span className='text-13'>1234</span>
+            ●●●● ●●●● ●●●● <span className='text-13'>{account?.mask}</span>
           </p>
         </article>
       </div>
@@ -60,7 +63,7 @@ const BankCard = ({ account, userName, showBalance = true}: CreditCardProps) => 
       />
       </Link>
 
-      {/* COPY */}
+      {showBalance && <Copy title={account?.shareableId}/>}
     </div>
   )
 }
