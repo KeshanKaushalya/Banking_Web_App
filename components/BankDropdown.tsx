@@ -46,7 +46,7 @@ export const BankDropdown = ({
   onValueChange={handleBankChange}
 >
   <SelectTrigger
-    className={`flex w-full bg-white gap-3 md:w-[300px] ${otherStyles}`}
+    className={`flex w-full bg-white gap-3 py-8 md:w-[300px] ${otherStyles}`}
   >
     <Image
       src="/icons/credit-card.svg"
@@ -54,7 +54,7 @@ export const BankDropdown = ({
       height={20}
       alt="account"
     />
-
+    
     <SelectValue placeholder="Select a bank" />
   </SelectTrigger>
 
@@ -67,7 +67,7 @@ export const BankDropdown = ({
         Select a bank to display
       </SelectLabel>
 
-      {accounts.map((account) => (
+      {accounts.map((account: Account) => (
         <SelectItem
           key={account.id}
           value={account.appwriteItemId}

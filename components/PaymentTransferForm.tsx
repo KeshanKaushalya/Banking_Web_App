@@ -64,27 +64,33 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
         destinationFundingSourceUrl: receiverBank.fundingSourceUrl,
         amount: data.amount,
       };
+      
+
       // create transfer
       const transfer = await createTransfer(transferParams);
+      
 
       // create transfer transaction
       if (transfer) {
         const transaction = {
           name: data.name,
           amount: data.amount,
-          senderId: senderBank.userId.$id,
+          senderId: senderBank.userId, // ✅ FIX
           senderBankId: senderBank.$id,
-          receiverId: receiverBank.userId.$id,
+          receiverId: receiverBank.userId, // ✅ FIX
           receiverBankId: receiverBank.$id,
           email: data.email,
         };
 
-        // const newTransaction = await createTransaction(transaction);
+        console.log("TRANSACTION PAYLOAD:", transaction);
 
-        // if (newTransaction) {
-        //   form.reset();
-        //   router.push("/");
-        // }
+
+        const newTransaction = await createTransaction(transaction);
+
+        if (newTransaction) {
+          form.reset();
+          router.push("/");
+        }
       }
     } catch (error) {
       console.error("Submitting create transfer request failed: ", error);
