@@ -23,11 +23,6 @@ A cutting-edge banking web application that revolutionizes personal finance mana
   
   </div>
 
-## 📊 Project Stats
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=KeshanKaushalya&repo=Banking_Web_App&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
-</div>
 
 ## Overview 🌟
 
