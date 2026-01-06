@@ -16,7 +16,7 @@ const balances = accounts.map((a) => a.currentBalance)
         {
             lable: 'Banks',
             data: balances,
-            backgroundColor: ['#b82ff3ff', '#165fdcff', '#fa2facff']
+            backgroundColor: ['#2f8af3ff', '#1619dcff', '#fa2facff']
         }
     ],
     labels: accountNames
