@@ -16,13 +16,17 @@ const balances = accounts.map((a) => a.currentBalance)
         {
             lable: 'Banks',
             data: balances,
-            backgroundColor: ['#0747b6', '#2265d8', '#2f91fa']
+            backgroundColor: ['#b82ff3ff', '#165fdcff', '#fa2facff']
         }
     ],
     labels: accountNames
   }
 
   return <Doughnut 
+  className='hover:cursor-pointer
+                transition-transform duration-200 ease-out
+                hover:scale-[1.08]
+                active:scale-[0.98];'
   data={data}
   options={{
     cutout: '60%',
