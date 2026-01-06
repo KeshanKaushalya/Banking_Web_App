@@ -49,11 +49,11 @@ const TransactionHistory = async ({ searchParams }: SearchParamProps) => {
       </div>
 
       <div className='space-y-6'>
-        <div className='transactions-account'>
+        <div className='transactions-account bg-bank1'>
           <div className='flex flex-col gap-2'>
-            <h2 className='text-18 font-bold text-white'>{account?.data.name}</h2>
-            <p className='text-14 text-blue-25'>{account?.data.officialName}</p>
-            <p className='text-14 font-semibold tracking-[1.1px] text-white'>
+            <h2 className='text-18 font-bold text-black'>{account?.data.name}</h2>
+            <p className='text-14 text-black-25'>{account?.data.officialName}</p>
+            <p className='text-14 font-semibold tracking-[1.1px] text-black'>
             ●●●● ●●●● ●●●● {account?.data.mask}
             </p>
           </div>
