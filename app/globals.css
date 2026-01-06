@@ -183,6 +183,35 @@
     @apply flex flex-col justify-between gap-8 px-6 py-8;
   }
 
+  .bg-gradient-mesh {
+  background-image:
+    /* Credit cards pattern */
+    url("/backgrounds/credit-cards.svg"),
+
+    /* Dollar bills pattern */
+    url("/backgrounds/dollar-bills.svg"),
+
+    /* Gradient mesh (indigo + purple + pink) */
+    radial-gradient(at 40% 20%, rgb(99, 102, 241) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgb(236, 72, 153) 0px, transparent 50%), /* pink */
+    radial-gradient(at 0% 50%, rgb(139, 92, 246) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, rgb(124, 58, 237) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgb(219, 39, 119) 0px, transparent 50%), /* pink */
+    radial-gradient(at 80% 100%, rgb(79, 70, 229) 0px, transparent 50%);
+
+  
+  background-repeat:
+    repeat,
+    repeat,
+    no-repeat;
+
+  background-position:
+    top left,
+    bottom right,
+    center;
+}
+
+
   /* My Banks */
   .my-banks {
     @apply flex h-screen max-h-screen w-full flex-col gap-8 bg-gray-25 p-8 xl:py-12;
