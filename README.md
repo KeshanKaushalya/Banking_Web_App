@@ -260,6 +260,8 @@ sequenceDiagram
    Search and select your bank
    ↓
    Enter your online banking credentials
+   Username: user_good
+   Password: pass_good
    ↓
    Select accounts to connect
    ↓
