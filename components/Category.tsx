@@ -1,9 +1,12 @@
 import React from 'react'
 
-const Category = () => {
+const Category = ({ category }: CategoryProps) => {
+    
+  
+
   return (
     <div>
-      Top
+      {category.name}
     </div>
   )
 }
