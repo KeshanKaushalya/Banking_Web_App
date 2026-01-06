@@ -12,7 +12,7 @@ const RightSidebar = ({ user, transactions, banks}: RightSidebarProps) => {
   return (
     <aside className='right-sidebar'>
         <section className='flex flex-col pb-8'>
-            <div className='profile-banner' />
+            <div className='profile-banner bg-bank1 blur-[2px] scale-105' />
             <div className='profile bg-gradient-to-b from-indigo-400/50 to-white-200/10'>
                 <div className='profile-img'>
                  <span className='text-5xl font-bold text-blue-500'>{user.firstName[0] || 'U'}</span>
