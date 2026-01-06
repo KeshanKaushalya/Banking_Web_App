@@ -15,11 +15,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Footer from "./Footer";
+import PlaidLink from "./PlaidLink";
 
 const MobileNav = ({ user }: MobileNavProps) => {
   const pathname = usePathname();
   return (
-    <section className="w-full max-w-[264px]">
+    <section className="w-full max-w-[264px] ">
       <Sheet>
         <SheetTrigger>
           <Image
@@ -32,7 +33,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
         </SheetTrigger>
 
         <SheetContent side="left" className="border-none bg-white">
-          <SheetHeader className="sr-only">
+          <SheetHeader className="sr-only ">
             <SheetTitle>Navigation Menu</SheetTitle>
           </SheetHeader>
           <Link
@@ -50,7 +51,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
             </h1>
           </Link>
 
-          <div className="mobilenav-sheet">
+          <div className="mobilenav-sheet bg-gradient-to-b from-indigo-100 to-white-200/10 p-6">
             <SheetClose asChild>
               <nav className="flex h-full flex-col gap-6 pt-16 text-white ">
                 {sidebarLinks.map((item) => {
@@ -90,7 +91,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                   );
                 })}
 
-                USER
+                <PlaidLink user={user} />
               </nav>
             </SheetClose>
 
