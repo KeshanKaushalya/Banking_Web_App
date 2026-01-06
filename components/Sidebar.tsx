@@ -13,7 +13,7 @@ const Sidebar = ({user}: SiderbarProps) => {
     const pathname = usePathname();
 
   return (
-   <section className='sidebar'>
+   <section className='sidebar bg-gradient-to-b from-indigo-100/30 to-white-200/10'>
     <nav className='flex flex-col gap-4'>
         <Link href="/" className='mb-12 cursor-pointer flex items-center gap-2'>
         <Image
