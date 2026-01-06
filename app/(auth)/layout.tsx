@@ -14,7 +14,7 @@ export default function RootLayout({
             src="/icons/backAuth.png"
             alt="Auth image"
             width={5000}
-            height={8000}
+            height={5000}
             />
           </div>
         </div>
