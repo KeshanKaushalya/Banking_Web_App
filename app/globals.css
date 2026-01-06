@@ -36,12 +36,12 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #5c5c7b;
+  background: #496ee8;
   border-radius: 50px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #7878a3;
+  background: #2525e0;
 }
 
 @layer utilities {
@@ -211,6 +211,19 @@
     center;
 }
 
+.bg-bank1 {
+  @apply bg-cover bg-center bg-no-repeat;
+  background-image: url("/icons/Back1.jpg");
+}
+
+.bg-bank2 {
+  @apply bg-cover bg-center bg-no-repeat blur-lg opacity-30;;
+  background-image: url("/icons/Back1.jpg")
+  
+ ;
+}
+
+
 
   /* My Banks */
   .my-banks {
@@ -248,7 +261,7 @@
 
   /* Bank Card */
   .bank-card {
-    @apply relative flex h-[190px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-bank-gradient shadow-creditCard backdrop-blur-[6px];
+    @apply relative flex h-[180px] w-full max-w-[320px] justify-between rounded-[20px] border border-white bg-bank-gradient shadow-creditCard backdrop-blur-[6px];
   }
 
   .bank-card_content {
