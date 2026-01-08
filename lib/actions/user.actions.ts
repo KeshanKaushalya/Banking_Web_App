@@ -119,7 +119,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   }
 
   return {
-    error: "Something went wrong. Please try again.",
+    error: `Something went wrong. Please try again.Check state expected one of "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA, etc.." or Any Field` + error.message,
   };
   }
 };
