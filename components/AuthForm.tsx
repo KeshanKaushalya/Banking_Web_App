@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { email, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,11 +19,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import CustomInput from "./CustomInput";
-import { authFormSchema } from "@/lib/utils";
+import { signInSchema, signUpSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
+
+type SignInFormValues = z.infer<typeof signInSchema>;
+type SignUpFormValues = z.infer<typeof signUpSchema>;
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -31,37 +34,78 @@ const AuthForm = ({ type }: { type: string }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  const isSignUp = type === "sign-up";
 
-  const formSchema = authFormSchema(type);
-
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+  const form = useForm<SignUpFormValues | SignInFormValues>({
+    resolver: zodResolver(isSignUp ? signUpSchema : signInSchema),
+    defaultValues: isSignUp
+      ? {
+          firstName: "",
+          lastName: "",
+          address1: "",
+          city: "",
+          state: "",
+          postalCode: "",
+          dateOfBirth: "",
+          ssn: "",
+          email: "",
+          password: "",
+        }
+      : {
+          email: "",
+          password: "",
+        },
   });
 
+  useEffect(() => {
+    if (isSignUp) {
+      form.reset({
+        firstName: "",
+        lastName: "",
+        address1: "",
+        city: "",
+        state: "",
+        postalCode: "",
+        dateOfBirth: "",
+        ssn: "",
+        email: "",
+        password: "",
+      });
+    } else {
+      form.reset({
+        email: "",
+        password: "",
+      });
+    }
+
+    setErrorMessage(null);
+    setUser(null);
+  }, [type]);
+
   // 2. Define a submit handler.
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (
+    data: SignUpFormValues | SignInFormValues
+  ) => {
+    console.log("SUBMIT DATA:", data); // Debug log
     setIsLoading(true);
     setErrorMessage(null);
     try {
         //Sign up with Appwrite & create plain link token
 
         if(type === 'sign-up'){
+        const signUpData = data as SignUpFormValues;
+
         const userData = {
-          firstName: data.firstName!,
-          lastName: data.lastName!,
-          address1: data.address1!,
-          city: data.city!,
-          state: data.state!,
-          postalCode: data.postalCode!,
-          dateOfBirth: data.dateOfBirth!,
-          ssn: data.ssn!,
-          email: data.email,
-          password: data.password,
+          firstName: signUpData.firstName,
+          lastName: signUpData.lastName,
+          address1: signUpData.address1,
+          city: signUpData.city,
+          state: signUpData.state,
+          postalCode: signUpData.postalCode,
+          dateOfBirth: signUpData.dateOfBirth,
+          ssn: signUpData.ssn,
+          email: signUpData.email,
+          password: signUpData.password,
         }
           const response = await signUp(userData);
 
@@ -71,16 +115,30 @@ const AuthForm = ({ type }: { type: string }) => {
             return;
           }
 
+          if (!response) {
+            setErrorMessage("Email already exists");
+            setIsLoading(false);
+            return;
+          }
+
           setUser(response);
         }
 
-        if(type === 'sign-in'){
-            const response = await signIn({
-                email: data.email,
-                password: data.password
-            })
+        
 
-            if(response) router.push('/')
+        if (type === "sign-in") {
+          const response = await signIn({
+            email: data.email,
+            password: data.password,
+          });
+
+          if (!response) {
+            setErrorMessage("Invalid email or password");
+            setIsLoading(false);
+            return;
+          }
+
+          router.replace("/");
         }
     } catch (error) {
         console.log(error)

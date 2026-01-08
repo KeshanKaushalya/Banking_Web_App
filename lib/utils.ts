@@ -186,22 +186,24 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? "Processing" : "Success";
 };
 
- export const authFormSchema = (type: string) => z.object({
- //sign up
- firstName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
- lastName: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(3, "String must contain at least 3 characters"),
- address1: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(50, "String must contain at most 50 characters"),
- city: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").max(15, "String must contain at most 15 characters"),
-state: z.enum([
-  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
+export const signUpSchema = z.object({
+  firstName: z.string().min(3),
+  lastName: z.string().min(3),
+  address1: z.string().min(1),
+  city: z.string().min(1),
+  state: z.string().min(2).regex(/^[A-Z]{2}$/, `Invalid option: expected one of "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
   "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
   "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
   "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
-  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"
-]), postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").min(4, "String must contain at least 4 characters").max(6, "String must contain at most 6 characters"),
- dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").regex(/^\d{4}-\d{2}-\d{2}$/, "Date must be in YYYY-MM-DD format"),
- ssn: type === 'sign-in' ? z.string().optional() : z.string().min(1, "Required").regex(/^\d{9}$/, "NIC must be 9 digits"),
- // sign in & sign up
- email: z.string().min(1, "Email is required").email("Invalid email address"),
- password: z.string().min(1, "Password is required").min(8, "Password must be at least 8 characters"),
+  "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY" `),
+  postalCode: z.string().min(4),
+  dateOfBirth: z.string(),
+  ssn: z.string().regex(/^\d{9}$/, "NIC must be 9 digits"),
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+export const signInSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
 });
