@@ -109,9 +109,18 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   });
 
   return parseStringify(newUser);
-  } catch (error) {
-    console.error('Error', error);
-    return null;
+  } catch (error: any) {
+   console.error("Sign up error:", error);
+
+  if (error?.code === 409) {
+    return {
+      error: "This email already exists. Please sign in instead.",
+    };
+  }
+
+  return {
+    error: "Something went wrong. Please try again.",
+  };
   }
 };
 

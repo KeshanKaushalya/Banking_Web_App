@@ -29,6 +29,8 @@ const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 
   const formSchema = authFormSchema(type);
 
@@ -44,6 +46,7 @@ const AuthForm = ({ type }: { type: string }) => {
   // 2. Define a submit handler.
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
+    setErrorMessage(null);
     try {
         //Sign up with Appwrite & create plain link token
 
@@ -60,9 +63,15 @@ const AuthForm = ({ type }: { type: string }) => {
           email: data.email,
           password: data.password,
         }
-          const newUser = await signUp(userData);
+          const response = await signUp(userData);
 
-          setUser(newUser);
+          if (response?.error) {
+            setErrorMessage(response.error);
+            setIsLoading(false);
+            return;
+          }
+
+          setUser(response);
         }
 
         if(type === 'sign-in'){
@@ -123,18 +132,24 @@ const AuthForm = ({ type }: { type: string }) => {
                 <CustomInput control={form.control} name="address1" label="Address" placeholder="Enter your specific address" />
                 <CustomInput control={form.control} name="city" label="City" placeholder="Enter your city" />
                 <div className="flex gap-4">
-                <CustomInput control={form.control} name="state" label="State / District" placeholder="ex: NY" />
+                <CustomInput control={form.control} name="state" label="State" placeholder="ex: NY, CA, PA, MO, PA" />
                 <CustomInput control={form.control} name="postalCode" label="Postal Code" placeholder="ex: 11100" />
                 </div>
                 <div className="flex gap-4">
                 <CustomInput control={form.control} name="dateOfBirth" label="Date of Birth" placeholder="YYYY-MM-DD" />
-                <CustomInput control={form.control} name="ssn" label="NIC" placeholder="ex: 123456789" />
+                <CustomInput control={form.control} name="ssn" label="NIC" placeholder="NIC must be 9 digits" />
                 </div>
                 </>
             )}
 
               <CustomInput control={form.control} name="email" label="Email" placeholder="Enter your email" />
               <CustomInput control={form.control} name="password" label="Password" placeholder="Enter your password" />
+
+            {errorMessage && (
+              <div className="rounded-md bg-red-50 border border-red-200 px-4 py-2">
+                <p className="text-sm text-red-600">{errorMessage}</p>
+              </div>
+            )}
 
             <div className="flex flex-col gap-4">
               <Button type="submit" disabled={isLoading}
